@@ -34,12 +34,21 @@ window.onload = function() {
         }
     };
 
+    function basicStylesRow() {
+        for (var i = 0; i<=2; i++) {
+             var elem = document.getElementById('row'+i); 
+             elem.style.clear = "both";
+        }
+    };
+
     function basicStylesCol() {
         for (var i = 0; i<=8; i++) {
              var elem = document.getElementById('col'+i); 
              elem.style.border = '#000000 1px solid';
              elem.style.width = '20px';
              elem.style.height = '20px';
+             elem.style.display = "block";
+             elem.style.float = "left";
         }
     };
 
@@ -47,6 +56,7 @@ window.onload = function() {
     addColDivRow1();
     addColDivRow2();
     addColDivRow3();
+    basicStylesRow();
     basicStylesCol();
 };
 
