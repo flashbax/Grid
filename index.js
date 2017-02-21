@@ -34,10 +34,20 @@ window.onload = function() {
         }
     };
 
+    function basicStylesCol() {
+        for (var i = 0; i<=8; i++) {
+             var elem = document.getElementById('col'+i); 
+             elem.style.border = '#000000 1px solid';
+             elem.style.width = '20px';
+             elem.style.height = '20px';
+        }
+    };
+
     addRowDiv();
     addColDivRow1();
     addColDivRow2();
     addColDivRow3();
+    basicStylesCol();
 };
 
 //Add child divs of rows numbers for each column in eac row
