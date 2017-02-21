@@ -9,17 +9,35 @@ window.onload = function() {
         }    
     };
 
-    //add columns of disvs to page with id (child of row divs)
-    function addColDiv() { 
+    //add columns with id's 1-3
+    function addColDivRow1() { 
         for (var i = 0; i<=2; i++) { 
             var divCol = document.createElement('div'); 
             divCol.setAttribute('id', 'col'+[i]);
-            document.getElementById('row'+i).appendChild(divCol);
+            document.getElementById('row0').appendChild(divCol);
+        }
+    };
+    //add columns with id's 4-6
+    function addColDivRow2() { 
+        for (var i = 3; i<=5; i++) { 
+            var divCol = document.createElement('div'); 
+            divCol.setAttribute('id', 'col'+[i]);
+            document.getElementById('row1').appendChild(divCol);
+        }
+    };
+    //add columns with id's 7-9
+    function addColDivRow3() { 
+        for (var i = 6; i<=8; i++) { 
+            var divCol = document.createElement('div'); 
+            divCol.setAttribute('id', 'col'+[i]);
+            document.getElementById('row2').appendChild(divCol);
         }
     };
 
     addRowDiv();
-    addColDiv();
+    addColDivRow1();
+    addColDivRow2();
+    addColDivRow3();
 };
 
 //Add child divs of rows numbers for each column in eac row
