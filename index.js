@@ -3,9 +3,9 @@ window.onload = function() {
     var body = document.getElementsByTagName('body');
     //document.createElement('div').setAttribute('id', 'container');
     
-    var blue = colourBlue('#4286f4');
-    var red = colourRed('#c40909');
-    var green = colourGreen('#62f441');
+    var blue = '#4286f4'
+    var red = '#c40909'
+    var green = '#62f441'
     //add array
     arr = [blue, red, green]
 
@@ -40,20 +40,6 @@ window.onload = function() {
                     elem.style.clear = "both";
              };
         };
-    };
-
-    //background colours
-    //blue
-    function colourBlue(blue) { 
-        return blue; 
-    };
-    //red
-    function colourRed(red) { 
-        return red; 
-    };
-    //green
-    function colourGreen(green) { 
-        return green; 
     };
     
     //init functions
