@@ -7,20 +7,31 @@ window.onload = function() {
     var red = '#c40909'
     var green = '#62f441'
 
-    var arr = [blue, red, green]; 
-   
+    var arr = [blue, red, green];  
 
     //shuffle array
-
-
-    function addTopRow() {     
+    Array.prototype.shuffle = function() {
+    var input = this; 
+        for (var i = input.length-1; i >=0; i--) {
+        
+            var randomIndex = Math.floor(Math.random()*(i+1)); 
+            var itemAtIndex = input[randomIndex]; 
+            
+            input[randomIndex] = input[i]; 
+            input[i] = itemAtIndex;
+        }
+    return input;
+    };
+     
+    function addTopRow() { 
         for (var i = 0; i <= 2; i++) { 
-            var divCol = document.createElement('div');  
+            var divCol = document.createElement('div');     
             divCol.setAttribute('id', 'col'+i);
             document.getElementById('body').appendChild(divCol);
-            document.getElementById('col'+i).style.backgroundColor = arr[Math.floor(Math.random() * 3)];
-            
+            document.getElementById('col'+i).style.backgroundColor = arr.shuffle()[0]; 
+            console.log(arr);
         };
+         
     };
 
     //document.getElementById('col1').addEventListener("click", topRowCheck());
