@@ -48,7 +48,7 @@ window.onload = function() {
     };
 
     //add css styles to divs
-    function basicStyles() {
+    function gridStyles() {
         for (var i = 0; i<=8; i++) {
              var elem = document.getElementById('col'+i); 
              //elem.style.border = '#000000 1px solid';
@@ -69,10 +69,27 @@ window.onload = function() {
         };
     };
     
+    function button() {
+        var button = document.createElement('button'); 
+        button.setAttribute('id', 'randBut'); 
+        document.getElementById('body').appendChild(button); 
+    };
+
+    function buttonStyles() { 
+        var elem = document.getElementById('randBut');
+        elem.style.width = '200px';
+        elem.style.height = '20px';
+        elem.innerText = 'Randomize';
+    }
+    
+    //document.getElementById('randBut').addEventListener("click", makeDivs());
+
     //init functions
+    button();
     makeDivs();
-    basicStyles();
+    gridStyles();
+    buttonStyles()
 };
 
 
-    //document.getElementById('col1').addEventListener("click", topRowCheck());
+    
