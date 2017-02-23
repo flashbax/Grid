@@ -1,12 +1,34 @@
 window.onload = function() {
     
-    var body = document.getElementsByTagName('body');
-    //document.createElement('div').setAttribute('id', 'container');
+    function container(){
+        var contain = document.createElement('div');
+        contain.setAttribute('id', 'container'); 
+        document.getElementById('body').appendChild(contain);
+    }
+
+    //create button
+    function button() {
+        var button = document.createElement('button'); 
+        button.setAttribute('id', 'randBut'); 
+        document.getElementById('body').appendChild(button); 
+        var elem = document.getElementById('randBut');
+        elem.style.width = '100px';
+        elem.style.height = '20px';
+        elem.innerText = 'Make Grid';
+        elem.style.display = 'block';
+        elem.style.clear = 'both';
+    };
+
+    //init button
     
+    container();
+    button();
+
     var blue = '#4286f4'
     var red = '#c40909'
     var green = '#62f441'
-
+    
+    document.getElementById('randBut').addEventListener("click", function() { 
     //shuffle array
     Array.prototype.shuffle = function() {
     var input = this; 
@@ -20,6 +42,7 @@ window.onload = function() {
         }
     return input;
     };
+    
 
     //create and shuffle array using shuffle function
     var arr = [blue, red, green]; 
@@ -32,7 +55,7 @@ window.onload = function() {
             var divCol = document.createElement('div');     
             divCol.setAttribute('id', 'col'+i); 
             //add divs as child of body tag
-            document.getElementById('body').appendChild(divCol);
+            document.getElementById('container').appendChild(divCol);
         };
 
         //push colors to elements
@@ -68,28 +91,14 @@ window.onload = function() {
              };
         };
     };
+  
     
-    function button() {
-        var button = document.createElement('button'); 
-        button.setAttribute('id', 'randBut'); 
-        document.getElementById('body').appendChild(button); 
-    };
-
-    function buttonStyles() { 
-        var elem = document.getElementById('randBut');
-        elem.style.width = '200px';
-        elem.style.height = '20px';
-        elem.innerText = 'Randomize';
-    }
-    
-    //document.getElementById('randBut').addEventListener("click", makeDivs());
-
-    //init functions
-    button();
     makeDivs();
-    gridStyles();
-    buttonStyles()
-};
+    gridStyles();   
+}); //event handler end
+
+
+}; //window load end
 
 
     
