@@ -19,8 +19,15 @@ window.onload = function() {
         elem.style.clear = 'both';
     };
 
+    //change state of text on click of button
+    function change() { 
+        var elem = document.getElementById('randBut');
+        if (elem.innerText = 'Make Grid') { 
+            elem.innerText = 'Randomize';
+        } 
+    }
+
     //init button
-    
     container();
     button();
 
@@ -28,7 +35,7 @@ window.onload = function() {
     var red = '#c40909'
     var green = '#62f441'
     
-    document.getElementById('randBut').addEventListener("click", function() { 
+    
     //shuffle array
     Array.prototype.shuffle = function() {
     var input = this; 
@@ -46,7 +53,7 @@ window.onload = function() {
 
     //create and shuffle array using shuffle function
     var arr = [blue, red, green]; 
-    var array = arr.shuffle();
+    //var array = arr.shuffle();
 
     //make the divs
     function makeDivs() { 
@@ -58,18 +65,28 @@ window.onload = function() {
             document.getElementById('container').appendChild(divCol);
         };
 
-        //push colors to elements
-        document.getElementById('col0').style.backgroundColor = array[0]; 
-        document.getElementById('col1').style.backgroundColor = array[1]; 
-        document.getElementById('col2').style.backgroundColor = array[2]; 
-        document.getElementById('col3').style.backgroundColor = array[2]; 
-        document.getElementById('col4').style.backgroundColor = array[0]; 
-        document.getElementById('col5').style.backgroundColor = array[1]; 
-        document.getElementById('col6').style.backgroundColor = array[1]; 
-        document.getElementById('col7').style.backgroundColor = array[2];
-        document.getElementById('col8').style.backgroundColor = array[0];    
     };
 
+    //button
+    document.getElementById('randBut').addEventListener("click", function() { 
+            change();
+            for (var i = 0; i<=2; i++) {
+                    var array = arr.shuffle(); 
+                }
+            //push colors to elements
+            document.getElementById('col0').style.backgroundColor = array[0]; 
+            document.getElementById('col1').style.backgroundColor = array[1]; 
+            document.getElementById('col2').style.backgroundColor = array[2]; 
+            document.getElementById('col3').style.backgroundColor = array[2]; 
+            document.getElementById('col4').style.backgroundColor = array[0]; 
+            document.getElementById('col5').style.backgroundColor = array[1]; 
+            document.getElementById('col6').style.backgroundColor = array[1]; 
+            document.getElementById('col7').style.backgroundColor = array[2];
+            document.getElementById('col8').style.backgroundColor = array[0];
+            
+                
+    });   
+    
     //add css styles to divs
     function gridStyles() {
         for (var i = 0; i<=8; i++) {
@@ -91,12 +108,10 @@ window.onload = function() {
              };
         };
     };
-  
     
+    //init functions
     makeDivs();
-    gridStyles();   
-}); //event handler end
-
+    gridStyles(); 
 
 }; //window load end
 
