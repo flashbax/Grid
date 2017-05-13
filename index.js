@@ -1,4 +1,7 @@
 window.onload = function() {
+
+
+	
     
     function container(){
         var contain = document.createElement('div');
@@ -68,11 +71,15 @@ window.onload = function() {
     };
 
     //button
+	const GRID_WIDTH = 3;
+	const GRID_HEIGHT = 3;
+	var gridArray = [[],[],[]];
+	
     document.getElementById('randBut').addEventListener("click", function() { 
             change();
-            for (var i = 0; i<=2; i++) {
+            //for (var i = 0; i<=2; i++) {
                     var array = arr.shuffle(); 
-                }
+               // }
             //push colors to elements
             document.getElementById('col0').style.backgroundColor = array[0]; 
             document.getElementById('col1').style.backgroundColor = array[1]; 
@@ -84,8 +91,36 @@ window.onload = function() {
             document.getElementById('col7').style.backgroundColor = array[2];
             document.getElementById('col8').style.backgroundColor = array[0];
             
-                
+			for( var y = 0 ; y < GRID_HEIGHT ; y++ ){
+				for( var x = 0 ; x < GRID_WIDTH ; x++ ){
+					console.log( "gridArray location:: "+ x +", "+y  );
+					var restArray = createRestrictArray( x ,y );
+					//gridArray[i][j] = chooseRandWithRestrictions( restArray );			
+				}		
+			}             
+			for( y = 0 ; y < GRID_HEIGHT ; y++ ){
+			console.log( gridArray[y] );
+			}
+			
     });   
+	
+	function createRestrictArray( i, j ){
+	debugger;
+		var restArray = [];
+		for ( var m = i-1 ; m >= 0 ; m-- ){
+			restArray.push( gridArray[m][j] );
+		}
+		for ( var n = j-1 ; n >= 0 ; n-- ){
+			restArray.push( gridArray[i][n] );
+		}
+		return restArray;
+	}
+	
+	function chooseRandWithRestrictions( restrictArray ){
+	
+	
+	
+	}
     
     //add css styles to divs
     function gridStyles() {
