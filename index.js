@@ -34,9 +34,9 @@ window.onload = function() {
     container();
     button();
 
-    var blue = '#4286f4'
-    var red = '#c40909'
-    var green = '#62f441'
+    var blue = '#4286f4';
+    var red = '#c40909';
+    var green = '#62f441';
     
     
     //shuffle array
@@ -51,6 +51,14 @@ window.onload = function() {
             input[i] = itemAtIndex;
         }
     return input;
+    };
+    Array.prototype.pushUnique = function(item){
+        for( var i = 0 ; i < this.length ; i++  ){
+            if( item == this[i] ){
+                return;
+            }
+        }
+        this.push(item);
     };
     
 
@@ -74,6 +82,7 @@ window.onload = function() {
 	const GRID_WIDTH = 3;
 	const GRID_HEIGHT = 3;
 	var gridArray = [[],[],[]];
+    var gridColorOptionArray = [ blue, red, green ];
 	
     document.getElementById('randBut').addEventListener("click", function() { 
             change();
@@ -90,37 +99,78 @@ window.onload = function() {
             document.getElementById('col6').style.backgroundColor = array[1]; 
             document.getElementById('col7').style.backgroundColor = array[2];
             document.getElementById('col8').style.backgroundColor = array[0];
-            
-			for( var y = 0 ; y < GRID_HEIGHT ; y++ ){
-				for( var x = 0 ; x < GRID_WIDTH ; x++ ){
-					console.log( "gridArray location:: "+ x +", "+y  );
-					var restArray = createRestrictArray( x ,y );
-					//gridArray[i][j] = chooseRandWithRestrictions( restArray );			
-				}		
-			}             
-			for( y = 0 ; y < GRID_HEIGHT ; y++ ){
-			console.log( gridArray[y] );
-			}
-			
-    });   
+
+            //create the data model.  In this example it's a 2D array representing the colours in a WxH grid.
+            createRandomGrid();
+            //update the view to visually represent the data.
+            refreshGrid();
+    });
+
+
+    function createRandomGrid(){
+        for( var x = 0 ; x < GRID_WIDTH ; x++ ) {
+            for (var y = 0; y < GRID_HEIGHT; y++) {
+                console.log("gridArray location:: " + x + ", " + y);
+                var restArray = createRestrictArray(x, y);
+                gridArray[x][y] = chooseRandWithRestrictions(restArray);
+            }
+        }
+        /*for( y = 0 ; y < GRID_HEIGHT ; y++ ){
+            console.log( gridArray[y] );
+        }*/
+    };
+
 	
 	function createRestrictArray( i, j ){
-	debugger;
 		var restArray = [];
 		for ( var m = i-1 ; m >= 0 ; m-- ){
-			restArray.push( gridArray[m][j] );
+			restArray.pushUnique( gridArray[m][j] );
 		}
 		for ( var n = j-1 ; n >= 0 ; n-- ){
-			restArray.push( gridArray[i][n] );
+			restArray.pushUnique( gridArray[i][n] );
 		}
+        console.log( "restArray length:: "+restArray.length );
+        if( restArray.length == gridColorOptionArray.length ){
+            createRandomGrid();
+            return;
+        }
 		return restArray;
 	}
 	
 	function chooseRandWithRestrictions( restrictArray ){
-	
-	
-	
+        var gridOptionsCopy = gridColorOptionArray.slice();
+        for( var i = 0 ; i < restrictArray.length ; i++ ){
+            for( var j = 0 ; j < gridOptionsCopy.length ; j++ ){
+                if( restrictArray[i] == gridOptionsCopy[j] ){
+                    gridOptionsCopy.splice(j,1);
+                    break;
+                }
+            }
+        }
+        var l = gridOptionsCopy.length-1;
+        var ind = getRandomInt(0, l );
+        return gridOptionsCopy[ ind ];
 	}
+
+    function getRandomInt(min, max) {
+        var result = Math.floor(Math.random() * (max - min + 1) + min);
+        return result;
+    }
+
+
+    function refreshGrid(){
+        for( var i = 0 ; i < GRID_WIDTH*GRID_HEIGHT ; i++ ){
+            document.getElementById('col'+i).style.backgroundColor = gridArray[ i%3 ][ Math.floor(i/3) ];
+        }
+    }
+
+
+
+
+
+
+
+
     
     //add css styles to divs
     function gridStyles() {
